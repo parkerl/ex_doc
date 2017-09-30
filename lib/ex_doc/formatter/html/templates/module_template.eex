@@ -14,7 +14,7 @@
 
       <%= if module.doc do %>
         <section id="moduledoc">
-          <%= module.doc |> to_html(module) |> link_moduledoc_headings() %>
+          <%= module.doc |> to_html(module, config) |> link_moduledoc_headings() %>
         </section>
       <% end %>
 
@@ -44,7 +44,7 @@
           </h1>
           <div class="types-list">
             <%= for type_node <- summary_map.types do
-              detail_template(type_node, module)
+              detail_template(type_node, module, config)
             end %>
           </div>
         </section>
@@ -60,7 +60,7 @@
             Functions
           </h1>
           <%= for function_node <- summary_map.functions do
-            detail_template(function_node, module)
+            detail_template(function_node, module, config)
           end %>
         </section>
       <% end %>
@@ -75,7 +75,7 @@
             Callbacks
           </h1>
           <%= for callback_node <- summary_map.callbacks do
-            detail_template(callback_node, module)
+            detail_template(callback_node, module, config)
           end %>
         </section>
       <% end %>

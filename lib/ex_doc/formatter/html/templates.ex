@@ -39,8 +39,14 @@ defmodule ExDoc.Formatter.HTML.Templates do
   def to_html(nil, %{source_path: _, doc_line: _}) do
     nil
   end
+  def to_html(nil, %{source_path: _, doc_line: _}, _config) do
+    nil
+  end
   def to_html(doc, %{source_path: file, doc_line: line}) when is_binary(doc) do
     ExDoc.Markdown.to_html(doc, file: file, line: line + 1)
+  end
+  def to_html(doc, %{source_path: file, doc_line: line}, config) when is_binary(doc) do
+    ExDoc.Markdown.to_html(doc, file: file, line: line + 1, earmark_plugins: config.earmark_plugins)
   end
 
   @doc """
@@ -269,7 +275,7 @@ defmodule ExDoc.Formatter.HTML.Templates do
   end
 
   templates = [
-    detail_template: [:module_node, :_module],
+    detail_template: [:module_node, :_module, :config],
     footer_template: [:config],
     head_template: [:config, :page],
     module_template: [:config, :module, :summary_map, :nodes_map],

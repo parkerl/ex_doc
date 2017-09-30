@@ -51,7 +51,8 @@ defmodule ExDoc do
       source_url: nil,
       source_url_pattern: nil,
       title: nil,
-      version: nil
+      version: nil,
+      earmark_plugins: %{}
     ]
 
      @type t :: %__MODULE__{
@@ -79,7 +80,8 @@ defmodule ExDoc do
        source_url: nil | String.t,
        source_url_pattern: nil | String.t,
        title: nil | String.t,
-       version: nil | String.t
+       version: nil | String.t,
+       earmark_plugins: nil | map()
      }
   end
 
